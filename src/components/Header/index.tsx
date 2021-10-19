@@ -1,10 +1,19 @@
-import { Container } from "./styles";
+import { Container, Icon } from "./styles";
 
-function Header() {
+interface HeaderProps {
+  isCartOpen: boolean;
+  setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Header({ isCartOpen, setIsCartOpen }: HeaderProps) {
   return (
     <Container>
       <h1>markt</h1>
-      <i className="fa fa-shopping-cart" />
+      <Icon
+        checked={isCartOpen}
+        onClick={() => setIsCartOpen((prevState: boolean) => !prevState)}
+        className="fa fa-shopping-cart"
+      />
     </Container>
   );
 }

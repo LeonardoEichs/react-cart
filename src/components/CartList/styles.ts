@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 1rem 1rem;
+  overflow-y: auto;
   h1 {
     float: right;
     font-weight: 800;

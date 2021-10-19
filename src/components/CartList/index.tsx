@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "components/Image";
 import { DefaultButton } from "components/Button";
 import {
@@ -9,7 +10,12 @@ import {
   ProductCount,
 } from "./styles";
 
-function CartList() {
+interface CartListProps {
+  isCartOpen: boolean;
+}
+
+function CartList({ isCartOpen }: CartListProps) {
+  if (!isCartOpen) return null;
   return (
     <Container>
       <h1>Cart</h1>
