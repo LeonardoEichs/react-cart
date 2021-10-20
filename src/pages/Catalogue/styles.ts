@@ -24,6 +24,10 @@ export const ProductInfo = styled.div`
   flex-direction: column;
   align-items: left;
   padding: 1rem 0 2rem;
+  width: 70%;
+  & > p {
+    padding-bottom: 0.75rem;
+  }
 `;
 
 export const CardInfo = styled.div`
