@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { StyledButton } from "./styles";
+import { StyledButton, PrimaryButtonStyle } from "./styles";
 
 type Props = {
   target?: string;
@@ -27,3 +27,6 @@ const ButtonWrapping = (Component: any, props: Props) => {
 
 export const DefaultButton = (props: Props) =>
   ButtonWrapping(StyledButton, props);
+
+export const PrimaryButton = (props: Props) =>
+  ButtonWrapping(PrimaryButtonStyle, props);

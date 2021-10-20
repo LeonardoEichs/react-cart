@@ -7,8 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 1rem 1rem 1rem;
   overflow-y: auto;
-  h1 {
-    float: right;
+  & > h1 {
     font-weight: 800;
     font-size: 1.25rem;
   }
@@ -21,7 +20,7 @@ export const ItemRow = styled.div`
   justify-content: space-between;
 `;
 export const Products = styled.div`
-  margin-top: 1rem;
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   ${ItemRow}:nth-child(even) {

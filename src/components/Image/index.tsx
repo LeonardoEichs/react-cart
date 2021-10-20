@@ -1,3 +1,4 @@
+import React from "react";
 import { ImgContainer, RoundImageContainer } from "./styles";
 
 interface ImageProps {
@@ -6,10 +7,11 @@ interface ImageProps {
   [key: string]: any;
 }
 
-function Image({ src, rounded, ...rest }: ImageProps) {
-  if (rounded)
-    return <RoundImageContainer src={src} height={60} width={60} {...rest} />;
-  return <ImgContainer src={src} height={50} width={50} {...rest} />;
-}
+const WrapperImage = (Component: any, props: ImageProps) => {
+  return <Component {...props} />;
+};
 
-export default Image;
+export const DefaultImage = (props: ImageProps) =>
+  WrapperImage(ImgContainer, props);
+export const RoundedImage = (props: ImageProps) =>
+  WrapperImage(RoundImageContainer, props);

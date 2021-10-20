@@ -12,3 +12,8 @@ export const StyledButton = styled.button`
     transform: scale(1.1);
   }
 `;
+
+export const PrimaryButtonStyle = styled(StyledButton)`
+  color: var(--white);
+  background-color: var(--black-50);
+`;

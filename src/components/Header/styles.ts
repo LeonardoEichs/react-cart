@@ -25,4 +25,8 @@ export const Icon = styled.i<IconProps>`
   background-color: ${(props) => (props.checked ? "var(--gray-200)" : "none")};
   padding: 0.5rem 0.75rem;
   border-radius: 20rem;
+
+  &:hover {
+    background-color: var(--gray-200);
+  }
 `;
