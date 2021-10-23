@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
         --success-500: #72ad54;
         --danger: #D9534F;
         --danger-500: #be4844;
+        --like: #be44aa;
     }
 
     body, #root {

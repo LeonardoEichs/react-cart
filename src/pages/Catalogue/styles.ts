@@ -45,3 +45,21 @@ export const Buttons = styled.div`
   justify-content: center;
   padding: 1rem 0 2rem;
 `;
+
+export const BuyLink = styled.h3`
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--primary-500);
+  }
+`;
+
+export const LikeLink = styled.h4`
+  cursor: pointer;
+  color: var(--like);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;

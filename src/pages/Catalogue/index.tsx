@@ -13,6 +13,8 @@ import {
   ProductInfo,
   CardInfo,
   Buttons,
+  BuyLink,
+  LikeLink,
 } from "./styles";
 
 function Catalogue() {
@@ -54,8 +56,8 @@ function Catalogue() {
                   <h3>$ {product.price}</h3>
                 </ProductInfo>
                 <Buttons>
-                  <h3>Buy</h3>
-                  <h4>Like</h4>
+                  <BuyLink>Buy</BuyLink>
+                  <LikeLink>Like</LikeLink>
                 </Buttons>
               </CardInfo>
             </ItemCard>
