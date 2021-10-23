@@ -20,6 +20,7 @@ import {
 function Catalogue() {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [likedProducts, setLikedProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -57,7 +58,27 @@ function Catalogue() {
                 </ProductInfo>
                 <Buttons>
                   <BuyLink>Buy</BuyLink>
-                  <LikeLink>Like</LikeLink>
+                  <LikeLink
+                    onClick={() => {
+                      if (likedProducts.find((lp) => lp.id === product.id)) {
+                        const copyLikedProducts = [...likedProducts];
+                        const removeIndex = likedProducts
+                          .map((lp) => lp.id)
+                          .indexOf(product.id);
+                        copyLikedProducts.splice(removeIndex, 1);
+                        setLikedProducts(copyLikedProducts);
+                      } else {
+                        setLikedProducts([...likedProducts, product]);
+                      }
+                    }}
+                    className={
+                      likedProducts.find((lp) => lp.id === product.id)
+                        ? "liked"
+                        : ""
+                    }
+                  >
+                    Like
+                  </LikeLink>
                 </Buttons>
               </CardInfo>
             </ItemCard>

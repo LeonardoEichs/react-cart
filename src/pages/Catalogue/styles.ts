@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface ILink {
+  onClick?: () => void;
+  [key: string]: any;
+}
+
 export const Container = styled.div``;
 export const ItemsList = styled.div`
   display: grid;
@@ -46,7 +51,7 @@ export const Buttons = styled.div`
   padding: 1rem 0 2rem;
 `;
 
-export const BuyLink = styled.h3`
+export const BuyLink = styled.h3<ILink>`
   cursor: pointer;
 
   &:hover {
@@ -55,9 +60,12 @@ export const BuyLink = styled.h3`
   }
 `;
 
-export const LikeLink = styled.h4`
+export const LikeLink = styled.h4<ILink>`
   cursor: pointer;
-  color: var(--like);
+
+  &.liked {
+    color: var(--like);
+  }
 
   &:hover {
     transform: scale(1.1);
