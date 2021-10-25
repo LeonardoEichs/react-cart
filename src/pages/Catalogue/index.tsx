@@ -38,7 +38,7 @@ function Catalogue() {
   return (
     <Container>
       <Header isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-      <CartList isCartOpen={isCartOpen} />
+      <CartList isCartOpen={isCartOpen} cartProducts={cartProducts} />
       {!isCartOpen && (
         <ItemsList>
           {products.map((product) => (

@@ -5,7 +5,10 @@ interface ILink {
   [key: string]: any;
 }
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const ItemsList = styled.div`
   display: grid;
   grid-template-columns: 1fr;
