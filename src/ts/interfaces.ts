@@ -8,6 +8,10 @@ export interface IProduct {
   rating: number;
 }
 
+export interface ICartProduct extends IProduct {
+  amount: number;
+}
+
 interface IRating {
   count: number;
   rate: number;

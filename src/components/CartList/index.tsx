@@ -1,4 +1,4 @@
-import { IProduct } from "ts/interfaces";
+import { ICartProduct } from "ts/interfaces";
 
 import { RoundedImage } from "components/Image";
 import { DefaultButton, PrimaryButton } from "components/Button";
@@ -10,13 +10,19 @@ import {
   ProductInfo,
   ProductCount,
 } from "./styles";
+import React from "react";
 
 interface CartListProps {
   isCartOpen: boolean;
-  cartProducts: IProduct[];
+  cartProducts: ICartProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<ICartProduct[]>>;
 }
 
-function CartList({ isCartOpen, cartProducts }: CartListProps) {
+function CartList({
+  isCartOpen,
+  cartProducts,
+  setCartProducts,
+}: CartListProps) {
   if (!isCartOpen) return null;
   return (
     <Container>
@@ -32,9 +38,44 @@ function CartList({ isCartOpen, cartProducts }: CartListProps) {
               </ProductText>
             </ProductInfo>
             <ProductCount>
-              <DefaultButton>-</DefaultButton>
-              <h4>9999</h4>
-              <DefaultButton>+</DefaultButton>
+              <DefaultButton
+                onClick={() => {
+                  const copyCartProducts = [...cartProducts];
+                  const removeIndex = cartProducts
+                    .map((p) => p.id)
+                    .indexOf(product.id);
+                  const newAmount = cartProducts[removeIndex].amount - 1;
+                  if (newAmount <= 0) {
+                    copyCartProducts.splice(removeIndex, 1);
+                  } else {
+                    const newProduct = {
+                      ...cartProducts[removeIndex],
+                      amount: newAmount,
+                    };
+                    copyCartProducts.splice(removeIndex, 1, newProduct);
+                  }
+                  setCartProducts(copyCartProducts);
+                }}
+              >
+                -
+              </DefaultButton>
+              <h4>{product.amount}</h4>
+              <DefaultButton
+                onClick={() => {
+                  const copyCartProducts = [...cartProducts];
+                  const removeIndex = cartProducts
+                    .map((p) => p.id)
+                    .indexOf(product.id);
+                  const newProduct = {
+                    ...cartProducts[removeIndex],
+                    amount: cartProducts[removeIndex].amount + 1,
+                  };
+                  copyCartProducts.splice(removeIndex, 1, newProduct);
+                  setCartProducts(copyCartProducts);
+                }}
+              >
+                +
+              </DefaultButton>
             </ProductCount>
           </ItemRow>
         ))}
@@ -42,7 +83,10 @@ function CartList({ isCartOpen, cartProducts }: CartListProps) {
 
       {cartProducts.length > 0 && (
         <h1 style={{ width: "97%", textAlign: "right", paddingBottom: "1rem" }}>
-          Total: {cartProducts.map((p) => p.price).reduce((a, b) => a + b)}
+          Total: $
+          {cartProducts
+            .reduce((acc, p) => p.price * p.amount + acc, 0)
+            .toFixed(2)}
         </h1>
       )}
       {cartProducts.length > 0 && (

@@ -2,7 +2,7 @@ import Header from "components/Header";
 import CartList from "components/CartList";
 import { DefaultImage } from "components/Image";
 
-import { IProduct, IFetchProduct } from "ts/interfaces";
+import { IProduct, IFetchProduct, ICartProduct } from "ts/interfaces";
 
 import { useState, useEffect } from "react";
 
@@ -21,7 +21,7 @@ function Catalogue() {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [likedProducts, setLikedProducts] = useState<IProduct[]>([]);
-  const [cartProducts, setCartProducts] = useState<IProduct[]>([]);
+  const [cartProducts, setCartProducts] = useState<ICartProduct[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -38,7 +38,11 @@ function Catalogue() {
   return (
     <Container>
       <Header isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-      <CartList isCartOpen={isCartOpen} cartProducts={cartProducts} />
+      <CartList
+        isCartOpen={isCartOpen}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+      />
       {!isCartOpen && (
         <ItemsList>
           {products.map((product) => (
@@ -68,7 +72,10 @@ function Catalogue() {
                         copyCartProducts.splice(removeIndex, 1);
                         setCartProducts(copyCartProducts);
                       } else {
-                        setCartProducts([...cartProducts, product]);
+                        setCartProducts([
+                          ...cartProducts,
+                          { ...product, amount: 1 },
+                        ]);
                       }
                     }}
                     className={
