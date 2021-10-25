@@ -54,9 +54,12 @@ export const Buttons = styled.div`
 export const BuyLink = styled.h3<ILink>`
   cursor: pointer;
 
+  &.onCart {
+    color: var(--third);
+  }
+
   &:hover {
     transform: scale(1.1);
-    color: var(--primary-500);
   }
 `;
 

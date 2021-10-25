@@ -21,6 +21,7 @@ function Catalogue() {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [likedProducts, setLikedProducts] = useState<IProduct[]>([]);
+  const [cartProducts, setCartProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -57,7 +58,27 @@ function Catalogue() {
                   <h3>$ {product.price}</h3>
                 </ProductInfo>
                 <Buttons>
-                  <BuyLink>Buy</BuyLink>
+                  <BuyLink
+                    onClick={() => {
+                      if (cartProducts.find((p) => p.id === product.id)) {
+                        const copyCartProducts = [...cartProducts];
+                        const removeIndex = cartProducts
+                          .map((p) => p.id)
+                          .indexOf(product.id);
+                        copyCartProducts.splice(removeIndex, 1);
+                        setCartProducts(copyCartProducts);
+                      } else {
+                        setCartProducts([...cartProducts, product]);
+                      }
+                    }}
+                    className={
+                      cartProducts.find((p) => p.id === product.id)
+                        ? "onCart"
+                        : ""
+                    }
+                  >
+                    Buy
+                  </BuyLink>
                   <LikeLink
                     onClick={() => {
                       if (likedProducts.find((lp) => lp.id === product.id)) {
